@@ -37,7 +37,7 @@ class Server{
         this.app.use('/api',productoRoute)
     }
     listen(){
-        this.app.listen(this.port, ()=>console.log(`Servidor corriendo en http://127.0.0.1:${this.port}`))
+        this.app.listen(this.port, ()=>console.log(`Servidor corriendo en http://localhost:${this.port}`))
     }
 }
 export default Server;
