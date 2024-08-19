@@ -4,9 +4,9 @@ import User from './User.js';
 import Product from './Product.js';
 
 const CompVent = sequelize.define('CompVenta', {
-  quantity: {
+  cantidad: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: false,// no puede ser nulo
   },
   total: {
     type: DataTypes.FLOAT,
@@ -21,8 +21,9 @@ const CompVent = sequelize.define('CompVenta', {
     allowNull: false,
   },
 });
-
-Order.belongsTo(User, { as: 'user' });
-Order.belongsTo(Product, { as: 'product' });
+//relacion donde cada compra y venta esta asociado a un usuario.
+CompVent.belongsTo(User, { as: 'user' });
+//relacion donde cada copra y venta esta asociada a un producto
+CompVent.belongsTo(Product, { as: 'product' });
 
 export default CompVent;

@@ -4,13 +4,15 @@ import User from './User.js';
 import Product from './Product.js';
 
 const Carrito = sequelize.define('Carrito', {
-  quantity: {
+  cantidad: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
 });
 
-Cart.belongsTo(User, { as: 'user' });
-Cart.belongsTo(Product, { as: 'product' });
+//relacion donde cada carrito esta asociado con un usuaario.
+Carrito.belongsTo(User, { as: 'user' });
+//cada carrito esta asociado a un producto.
+Carrito.belongsTo(Product, { as: 'product' });
 
 export default Carrito;

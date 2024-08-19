@@ -19,22 +19,22 @@ class ProductService {
     async updateProduct(id, data) {
         try {
           const product = await Product.findByPk(id);
-          if (!product) throw new Error('Product not found');
+          if (!product) throw new Error('Se actualizo el producto');
           await product.update(data);
           return product;
         } catch (error) {
-          throw new Error('Error updating product');
+          throw new Error('Error al actualizar el producto');
         }
       }
     
       async deleteProduct(id) {
         try {
           const product = await Product.findByPk(id);
-          if (!product) throw new Error('Product not found');
+          if (!product) throw new Error('El producto fue eliminado');
           await product.destroy();
           return product;
         } catch (error) {
-          throw new Error('Error deleting product');
+          throw new Error('Error al eliminar el producto');
         }
       }
 }
