@@ -34,7 +34,7 @@ export const getUsers = async (req, res) => {
 export const getUserById = async (req, res) => {
     try {
         const user = await User.findByPk(req.params.id);
-        if (!user) return res.status(404).json({ message: 'User not found' });
+        if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
         res.status(200).json(user);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -49,7 +49,7 @@ export const updateUser = async (req, res) => {
 
         // Encontrar el usuario por ID
         const user = await User.findByPk(id);
-        if (!user) return res.status(404).json({ message: 'User not found' });
+        if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
 
         // Verificar que el rol sea válido (si se proporciona)
         const validRoles = ['cliente', 'vendedor', 'admin'];
@@ -68,9 +68,9 @@ export const updateUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
     try {
         const user = await User.findByPk(req.params.id);
-        if (!user) return res.status(404).json({ message: 'User not found' });
+        if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
         await user.destroy();
-        res.status(200).json({ message: 'User deleted' });
+        res.status(200).json({ message: 'Usuario eliminado' });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

@@ -26,7 +26,7 @@ export const getCartItems = async (req, res) => {
 export const updateCartItem = async (req, res) => {
     try {
         const carrito = await Carrito.findByPk(req.params.id);
-        if (!carrito) return res.status(404).json({ message: 'Cart item not found' });
+        if (!carrito) return res.status(404).json({ message: 'No se encontro el articulo en el carrito' });
         await carrito.update(req.body);
         res.status(200).json(carrito);
     } catch (error) {
@@ -38,9 +38,9 @@ export const updateCartItem = async (req, res) => {
 export const removeFromCart = async (req, res) => {
     try {
         const carrito = await Carrito.findByPk(req.params.id);
-        if (!carrito) return res.status(404).json({ message: 'Cart item not found' });
+        if (!carrito) return res.status(404).json({ message: 'No se encontro el articulo en el carrito' });
         await carrito.destroy();
-        res.status(200).json({ message: 'Cart item deleted' });
+        res.status(200).json({ message: 'Articulo del carrito eliminado' });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
