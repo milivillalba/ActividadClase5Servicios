@@ -1,8 +1,9 @@
 
-import User from '../models/User.js';
+import User from '../models/User';
+import { Request, Response } from 'express';
 
 // Crear un nuevo usuario
-export const createUser = async (req, res) => {
+export const createUser = async (req:Request, res:Response) => {
     try {
         const { name, email, password, role } = req.body;
 
@@ -15,13 +16,13 @@ export const createUser = async (req, res) => {
         // Crear el usuario
         const user = await User.create({ name, email, password, role });
         res.status(201).json(user);
-    } catch (error) {
+    } catch (error:any) {
         res.status(500).json({ message: error.message });
     }
 };
 
 // Obtener todos los usuarios
-export const getUsers = async (req, res) => {
+export const getUsers = async (req:Request, res:Response) => {
     try {
         const users = await User.findAll();
         res.status(200).json(users);

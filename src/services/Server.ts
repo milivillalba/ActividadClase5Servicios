@@ -1,16 +1,19 @@
-import express from "express";
+import express ,{Application} from "express";
 import cors from "cors";
 import morgan from "morgan";
-import { PORT } from "../confing/config.js";
-import router from "../router/rutas.js";
-import sequelize from "../db/connection.js";
-import Carrito from "../models/Carrito.js";
-import User from "../models/User.js";
-import Product from "../models/Product.js";
-import CompVent from "../models/CompVent.js";
+import { PORT } from "../confing/config";
+import router from "../router/rutas";
+import sequelize from "../db/connection";
+import Carrito from "../models/Carrito";
+import User from "../models/User";
+import Product from "../models/Product";
+import CompVent from "../models/CompVent";
 //logica y configuracion para inicializar y ejecutar el servidor.
 
 class Server{
+
+    private app: Application;
+    public port:string | undefined
     constructor(){
       
         this.app= express();//inicializa la aplicacion de express
@@ -33,13 +36,13 @@ class Server{
       }
     }
     //configuracion de middelware para que las rutas puedan manejar las solicitudes.
-    middelwares(){
+    middelwares(): void{
         this.app.use(cors());//habilita cors para permitir solicitudes de otros dominios
         this.app.use(morgan('dev'));//usa morgan para registrar las solisitudes http en la consola.
         this.app.use(express.json())//utiliza expres para acceder al cuerpo de las solisitudes en formato json.
     }
     //funcion para acceder a las rutas.
-    routes(){
+    routes():void{
         this.app.use('/api',router)//defino las ruta base /api y asocio todas las rutas de productoRoutes.
     }
     //iniciar el servidor.
